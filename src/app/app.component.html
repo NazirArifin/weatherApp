@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
+      <h2 class="text-center mt-3">APLIKASI CEK CUACA</h2>
+      <hr class="my-3">
+
       <div id="app" class="shadow">
         <div class="row">
           <div class="col text-center mb-3 font-weight-bold">
@@ -10,16 +13,16 @@
         <div class="row">
           <div class="col">
             <div class="input-group input-group-lg mb-3">
-              <input type="text" class="form-control" placeholder="Nama Kota">
+              <input type="text" class="form-control" name="query" id="query" [(ngModel)]="query" placeholder="Nama Kota">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">Periksa!</button>
+                <button class="btn btn-dark" type="button" [disabled]=" ! query.length" (click)="getWeather()">Periksa!</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- error -->
-        <div class="row">
+        <div class="row" *ngIf="data.error">
           <div class="col">
             <div class="alert weather-error text-center">
               Tidak ada kota tersebut di database
@@ -28,20 +31,20 @@
         </div>
 
         <!-- sukses -->
-        <div class="row">
+        <div class="row" *ngIf="data.city">
           <div class="col text-center">
-            <h1>Jakarta, ID</h1>
-            <p><em>cloudy</em></p>
+            <h1>{{data.city}}, {{data.country}}</h1>
+            <p><em>{{data.weatherDescription}}</em></p>
             <div class="weather-result__main mb-3">
-              <img src="" alt="Weather Icon">
+              <img [src]="data.icon" alt="Weather Icon">
               <div class="weather-result__temp">
-                28&deg;C
+                {{data.temp}}&deg;C
               </div>
             </div>
             <div class="weather-result__details">
-              <p>Min: 28&deg;C</p>
-              <p>Max: 33&deg;C</p>
-              <p>Humidity: 43%</p>
+              <p>Min: {{data.tempMin}}&deg;C</p>
+              <p>Max: {{data.tempMax}}&deg;C</p>
+              <p>Humidity: {{data.humidity}}%</p>
             </div>
           </div>
         </div>
