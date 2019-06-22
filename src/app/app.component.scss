@@ -1,0 +1,32 @@
+#app {
+  margin-top: 30px;
+  border: 1px solid rgba(255, 255, 255, .8);
+  padding: 20px;
+  border-radius: 0.3rem;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(212, 228, 239, 1) 0%,
+    rgba(134, 174, 204, 1) 100%
+  );
+}
+
+.weather-error {
+  background-color: red;
+  color: #fff;
+}
+
+.weather-result {
+  &__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  &__details {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
